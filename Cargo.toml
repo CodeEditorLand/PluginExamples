@@ -1,2 +1,4 @@
 [workspace]
-members = ["examples/handler-example"]
+members = [
+    "examples/handler-example"
+]

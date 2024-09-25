@@ -1,13 +1,13 @@
 {
+	"scripts": {
+		"build": "cargo build --target wasm32-wasi -p rust-swc-handler-example && pwd && cp $(pwd)/../../target/wasm32-wasi/debug/rust_swc_handler_example.wasm .",
+		"start": "cross-env RUST_BACKTRACE=1 RUST_LOG=debug npx swc --config-file=.swcrc src/index.ts"
+	},
 	"dependencies": {
 		"@swc/cli": "0.4.0",
 		"@swc/core": "1.7.26"
 	},
 	"devDependencies": {
 		"cross-env": "7.0.3"
-	},
-	"scripts": {
-		"build": "cargo build --target wasm32-wasi -p rust-swc-handler-example && pwd && cp $(pwd)/../../target/wasm32-wasi/debug/rust_swc_handler_example.wasm .",
-		"start": "cross-env RUST_BACKTRACE=1 RUST_LOG=debug npx swc --config-file=.swcrc src/index.ts"
 	}
 }

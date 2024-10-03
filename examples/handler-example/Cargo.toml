@@ -5,7 +5,12 @@ edition = "2021"
 
 [lib]
 crate-type = ["cdylib"]
+path = "Source/lib.rs"
 
 [dependencies]
 serde = "1"
-swc_core = { version = "0.82.0", features = ["common", "ecma_utils", "ecma_plugin_transform"] }
+swc_core = { version = "0.106.4", features = [
+	"common",
+	"ecma_utils",
+	"ecma_plugin_transform",
+] }

@@ -1,2 +1,2 @@
-console.log('log');
-console.info('info');
+console.log("log");
+console.info("info");

@@ -3,19 +3,9 @@ use swc_core::{
 	ecma::{
 		ast::*,
 		utils::quote_ident,
-		visit::{
-			as_folder,
-			noop_visit_mut_type,
-			FoldWith,
-			VisitMut,
-			VisitMutWith,
-		},
+		visit::{as_folder, noop_visit_mut_type, FoldWith, VisitMut, VisitMutWith},
 	},
-	plugin::{
-		errors::HANDLER,
-		plugin_transform,
-		proxies::TransformPluginProgramMetadata,
-	},
+	plugin::{errors::HANDLER, plugin_transform, proxies::TransformPluginProgramMetadata},
 };
 
 const CONSOLE:&str = "console";
@@ -36,9 +26,7 @@ impl VisitMut for TransformVisitor {
 
 		if let Callee::Expr(callee) = &mut call_expr.callee {
 			if let Expr::Member(member) = &**callee {
-				if let (Expr::Ident(obj), MemberProp::Ident(prop)) =
-					(&*member.obj, &member.prop)
-				{
+				if let (Expr::Ident(obj), MemberProp::Ident(prop)) = (&*member.obj, &member.prop) {
 					if &obj.sym == CONSOLE && &prop.sym == LOG {
 						*callee = Box::new(Expr::Member(MemberExpr {
 							span:DUMMY_SP,
@@ -47,9 +35,7 @@ impl VisitMut for TransformVisitor {
 						}));
 					} else if &obj.sym == CONSOLE && &prop.sym == INFO {
 						HANDLER.with(|handler| {
-							handler
-								.struct_span_err(prop.span, &format!("foo"))
-								.emit();
+							handler.struct_span_err(prop.span, &format!("foo")).emit();
 						});
 					}
 				}
@@ -59,9 +45,6 @@ impl VisitMut for TransformVisitor {
 }
 
 #[plugin_transform]
-pub fn process_transform(
-	program:Program,
-	_metadata:TransformPluginProgramMetadata,
-) -> Program {
+pub fn process_transform(program:Program, _metadata:TransformPluginProgramMetadata) -> Program {
 	program.fold_with(&mut as_folder(TransformVisitor))
 }

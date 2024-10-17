@@ -9,7 +9,7 @@ path = "Source/lib.rs"
 
 [dependencies]
 serde = "1"
-swc_core = { version = "1.0.1", features = [
+swc_core = { version = "1.0.3", features = [
 	"common",
 	"ecma_utils",
 	"ecma_plugin_transform",

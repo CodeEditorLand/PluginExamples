@@ -4,10 +4,10 @@
     "start": "cross-env RUST_BACKTRACE=1 RUST_LOG=debug npx swc --config-file=.swcrc src/index.ts"
   },
   "dependencies": {
-    "@swc/cli": "^0.7.7",
-    "@swc/core": "^1.11.31"
+    "@swc/cli": "^0.8.1",
+    "@swc/core": "^1.15.43"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3"
+    "cross-env": "^10.1.0"
   }
 }

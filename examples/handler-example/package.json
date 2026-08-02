@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "@swc/cli": "^0.8.1",
-    "@swc/core": "^1.15.43"
+    "@swc/core": "^1.15.47"
   },
   "devDependencies": {
     "cross-env": "^10.1.0"
